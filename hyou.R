@@ -28,7 +28,6 @@ legend("topleft", legend=c("tohoku","kanto", "tokyo" ,"chubu","hokkaido","kinki"
 abline(v = 2008)
 
 
-
 2.#失業率を出す
 
 kanto.rate<- tapply(kanto$unemployed, kanto$year, mean) / tapply(kanto$force.pop, kanto$year, mean) *100
