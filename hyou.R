@@ -25,8 +25,9 @@ pref.wage <- cbind(tohoku.wage,kanto.wage,tokyo.wage,chubu.wage,hokkaido.wage,ki
 year <- unique(hyou$year)
 matplot(year,pref.wage,type="l",col = c("red","pink","gray","green","yellow","orange","blue","purple","black"),xlab="years",ylab="minimum wage",xaxp=c(1997,2018,21))
 legend("topleft", legend=c("tohoku","kanto", "tokyo" ,"chubu","hokkaido","kinki","chugoku","shikoku","kyushu"),col=c("red","pink","gray","green","yellow","orange","blue","purple","black"), pch=c(15,0), lwd=2, lty=1)
+abline(v = 2008)
 
-un.wage <- cbind(kanto.wage,kyushu.wage,chubu.wage)
+
 
 2.#失業率を出す
 
@@ -35,19 +36,12 @@ kyushu.rate<- tapply(kyushu$unemployed, kyushu$year, mean) / tapply(kyushu$force
 chubu.rate<- tapply(chubu$unemployed, chubu$year, mean) / tapply(chubu$force.pop, chubu$year, mean) *100
 un.rate <- cbind(kanto.rate,kyushu.rate,chubu.rate)
 un.rate
-#plot(year,kanto.rate,type = "b",xlab="years",ylab="unemployment-rate",xlim=c(1997,2018),ylim = c(2.0,6.0),xaxp=c(1997,2018,21))
-#plot(year,kyushu.rate,type = "b",xlab="years",ylab="unemployment-rate",xlim=c(1997,2018),ylim = c(2.0,6.0),xaxp=c(1997,2018,21))
-#plot(year,chubu.rate,type = "b",xlab="years",ylab="unemployment-rate",xlim=c(1997,2018),ylim = c(2.0,6.0),xaxp=c(1997,2018,21))
-
-3.#失業率と最低賃金の相関性
 matplot(year,un.rate,type = "l",col=c("royalblue3","red","green"),xlab="years",ylab="unemployment-rate",xlim=c(1997,2018),xaxp=c(1997,2018,21))
 legend("topright", legend=c("kanto", "kyushu","chubu"),col=c("royalblue3","red","green"), pch=c(15,0), lwd=2, lty=1)
-matplot(un.wage,un.rate,col = c("royalblue3","red","green"),type="l")
+
+3.#失業率と最低賃金の相関性
+matplot(un.wage,un.rate,col = c("royalblue3","red","green"),type="l",xlab ="minimum-wage" ,ylab ="unemployed-rate" )
 legend("topright", legend=c("kanto","kyushu", "chubu"),col = c("royalblue3","red","green"),pch=c(15,0))
-matplot(un.rate,un.wage,col = c("royalblue3","red","green"),type="l")
+un.wage <- cbind(kanto.wage,kyushu.wage,chubu.wage)
+matplot(un.rate,un.wage,col = c("royalblue3","red","green"),type="l",xlab = "unemployed-rate",ylab ="minimum-wage")
 legend("topright", legend=c("kanto","kyushu", "chubu"),col = c("royalblue3","red","green"),pch=c(15,0))
-
-
-
-
-
